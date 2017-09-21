@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Better Picross</string>
+
+    <string name="tutorial_slide_1_title">How to play Picross</string>
+    <string name="tutorial_slide_2_title">How to play Picross</string>
+    <string name="tutorial_slide_3_title">How to play Picross</string>
+    <string name="tutorial_slide_4_title">How to play Picross</string>
+    <string name="tutorial_slide_5_title">How to play Picross</string>
+    <string name="tutorial_slide_6_title">That\'s it!</string>
+    <string name="tutorial_slide_1_text">Picross is a logic game of filling squares in a grid.</string>
+    <string name="tutorial_slide_2_text">The numbers above the grid are how many cells in each column must be filled. The numbers beside the grid are how many cells in each row must be filled.</string>
+    <string name="tutorial_slide_3_text">The top row needs to have 5 cells filled. Since it only has 5 cells, all must be filled. You can fill a cell by tapping it.</string>
+    <string name="tutorial_slide_4_text">Now the left column already has 1 cell filled, so it is done. You can mark cells as empty by double tapping them.</string>
+    <string name="tutorial_slide_5_text">The rightmost column clue, "2 2", means there is a block of 2 cells connected with some space in between another block of 2 cells. There is only one possible solution.</string>
+    <string name="tutorial_slide_6_text">GET STARTED</string>
+
+
+</resources>
