@@ -22,4 +22,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TutorialActivity.class);
         startActivity(intent);
     }
+
+    public void generateClicked(View v) {
+        Intent intent = new Intent(this, GenerateActivity.class);
+        startActivity(intent);
+    }
 }

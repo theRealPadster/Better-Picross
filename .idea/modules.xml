@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Better-Picross.iml" filepath="$PROJECT_DIR$/Better-Picross.iml" />
       <module fileurl="file:///data/padster/Sources/BetterPicross/BetterPicross.iml" filepath="/data/padster/Sources/BetterPicross/BetterPicross.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file:///data/padster/Sources/BetterPicross/app/app.iml" filepath="/data/padster/Sources/BetterPicross/app/app.iml" />
     </modules>
   </component>
