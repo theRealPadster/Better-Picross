@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Better Picross</string>
 
-    <string name="tutorial_slide_1_title">How to play Picross</string>
+    <string name="tutorial_slide_1_title">What is Picross</string>
     <string name="tutorial_slide_2_title">How to play Picross</string>
     <string name="tutorial_slide_3_title">How to play Picross</string>
     <string name="tutorial_slide_4_title">How to play Picross</string>
