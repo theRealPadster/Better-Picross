@@ -20,7 +20,8 @@
         <activity
             android:name=".TutorialActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".GenerateActivity"></activity>
+        <activity android:name=".GenerateActivity" />
+        <activity android:name=".GameActivity"></activity>
     </application>
 
 </manifest>

@@ -1,12 +1,16 @@
 package com.example.padster.betterpicross;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
 public class GenerateActivity extends AppCompatActivity {
+
+    NumberPicker rowsPicker, colsPicker = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,8 +18,8 @@ public class GenerateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_generate);
 
         //Get the widgets reference from XML layout
-        NumberPicker rowsPicker = (NumberPicker) findViewById(R.id.rowsPicker);
-        NumberPicker colsPicker = (NumberPicker) findViewById(R.id.colsPicker);
+        rowsPicker = (NumberPicker) findViewById(R.id.rowsPicker);
+        colsPicker = (NumberPicker) findViewById(R.id.colsPicker);
 
 
         //Populate NumberPicker values from minimum and maximum value range
@@ -38,6 +42,18 @@ public class GenerateActivity extends AppCompatActivity {
                 //tv.setText("Selected Number : " + newVal);
             }
         });
+    }
+
+    public void generateClicked(View v) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("rows", rowsPicker.getValue());
+        bundle.putInt("cols", colsPicker.getValue());
+
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
+
     }
 
 
