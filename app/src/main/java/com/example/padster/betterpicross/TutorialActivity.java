@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
+//Using AppIntro from https://github.com/apl-devs/AppIntro
 public class TutorialActivity extends AppIntro {
 
     @Override

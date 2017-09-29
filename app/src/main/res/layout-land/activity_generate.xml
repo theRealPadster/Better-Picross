@@ -33,7 +33,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:text="Generate!" />
+                android:text="@string/Generate" />
 
         </TableRow>
 
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Rows" />
+                android:text="@string/Rows" />
 
             <NumberPicker
                 android:id="@+id/rowsPicker"
@@ -62,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Columns" />
+                android:text="@string/Columns" />
 
             <NumberPicker
                 android:id="@+id/colsPicker"
@@ -88,7 +88,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:onClick="generateClicked"
-                android:text="Generate" />
+                android:text="@string/Generate" />
         </TableRow>
     </TableLayout>
 

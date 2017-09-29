@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:enabled="false"
-            android:text="Continue" />
+            android:text="@string/Continue" />
 
         <Button
             android:id="@+id/newBtn"
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="New" />
+            android:text="@string/New" />
 
         <Button
             android:id="@+id/generateBtn"
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Generate" />
+            android:text="@string/Generate" />
 
         <Button
             android:id="@+id/tutorialBtn"
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Tutorial" />
+            android:text="@string/Tutorial" />
 
         <Button
             android:id="@+id/settingsBtn"
@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Settings" />
+            android:text="@string/Settings" />
 
         <Button
             android:id="@+id/aboutBtn"
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="About" />
+            android:text="@string/About" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
