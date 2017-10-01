@@ -1,0 +1,18 @@
+<resources>
+
+    <!--TODO - get proper Material theme working for API 21+ (Android 5.0+)-->
+
+    <!-- Base application theme. -->
+    <!--<style name="AppTheme" parent="@android:style/Theme.Material.Light.DarkActionBar">-->
+        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+        <!--<item name="@android:colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="@android:colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--<item name="@android:navigationBarColor">@color/navigationBarColor</item>-->
+    <!--</style>-->
+
+    <!--<style name="AppTheme.NoActionBar" parent="AppTheme">-->
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="windowNoTitle">true</item>-->
+    <!--</style>-->
+
+</resources>
