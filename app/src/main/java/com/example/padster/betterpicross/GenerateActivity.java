@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class GenerateActivity extends AppCompatActivity {
+public class GenerateActivity extends AppCompatActivity implements View.OnHoverListener {
 
     NumberPicker rowsPicker, colsPicker = null;
+    Button generateBtn = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,7 @@ public class GenerateActivity extends AppCompatActivity {
         //Get the widgets reference from XML layout
         rowsPicker = (NumberPicker) findViewById(R.id.rowsPicker);
         colsPicker = (NumberPicker) findViewById(R.id.colsPicker);
+        generateBtn = (Button) findViewById(R.id.generateBtn);
 
 
         //Populate NumberPicker values from minimum and maximum value range
@@ -42,6 +47,8 @@ public class GenerateActivity extends AppCompatActivity {
                 //tv.setText("Selected Number : " + newVal);
             }
         });
+
+        generateBtn.setOnHoverListener(this);
     }
 
     public void generateClicked(View v) {
@@ -57,4 +64,9 @@ public class GenerateActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onHover(View view, MotionEvent motionEvent) {
+        Toast.makeText(this, "hovered", Toast.LENGTH_SHORT).show();
+        return false;
+    }
 }
