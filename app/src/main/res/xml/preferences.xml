@@ -6,6 +6,10 @@
         android:defaultValue="false"
         android:key="vibration_enabled"
         android:title="Vibration enabled" />
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="show_timer"
+        android:title="Show timer" />
     <PreferenceCategory android:title="Sound settings">
         <SwitchPreference
             android:defaultValue="true"
