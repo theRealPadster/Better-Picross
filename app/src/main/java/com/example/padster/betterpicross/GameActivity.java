@@ -1,6 +1,7 @@
 package com.example.padster.betterpicross;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -21,6 +23,8 @@ public class GameActivity extends AppCompatActivity {
 
         int rows = bundle.getInt("rows");
         int cols = bundle.getInt("cols");
+
+        PicrossGrid picrossGrid = new PicrossGrid(rows, cols);
 
         //////////////////////////
 
@@ -39,6 +43,13 @@ public class GameActivity extends AppCompatActivity {
                 b.setLayoutParams(new TableRow.LayoutParams(0,TableRow.LayoutParams.WRAP_CONTENT));
                 b.setText(colCounter + "," + rowCounter);
 
+                if (picrossGrid.getTile(rowCounter, colCounter) == PicrossGrid.Colours.BLACK) {
+                    b.setBackgroundColor(getResources().getColor(R.color.pink));
+                }
+                else {
+                    b.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                }
+
                 // add the button to the new TableRow
                 row.addView(b);
             }
@@ -49,5 +60,12 @@ public class GameActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Toast.makeText(this, "TODO - save the game somehow before navigating away", Toast.LENGTH_LONG).show();
     }
 }
