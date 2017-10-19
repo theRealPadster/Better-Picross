@@ -53,6 +53,10 @@ public class PicrossGrid {
         return grid[row][col];
     }
 
+    public void setTile(int row, int col, Colours colour) {
+        grid[row][col] = colour;
+    }
+
 
 
 }
