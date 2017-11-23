@@ -1,6 +1,8 @@
 package com.example.padster.betterpicross;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Vector;
 
 /**
  * Created by padster on 05/10/17.
@@ -13,6 +15,7 @@ public class PicrossGrid {
     private int numCols = 0;
 
     private Colours[][] grid;
+    private ArrayList<Vector<Integer>> clues;
 
     public PicrossGrid(int rows, int cols) {
         if (rows > 0) {
