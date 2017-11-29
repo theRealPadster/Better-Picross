@@ -23,6 +23,7 @@
     <string name="About">About</string>
     <string name="Play">Play</string>
     <string name="Pause">Pause</string>
+    <string name="title_activity_levels">LevelsActivity</string>
 
 
 </resources>

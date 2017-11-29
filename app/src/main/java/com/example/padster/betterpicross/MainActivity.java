@@ -10,7 +10,15 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.padster.betterpicross.database.AppDatabase;
+import com.example.padster.betterpicross.database.Level;
+import com.example.padster.betterpicross.database.Pack;
+
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements OnClickListener {
+
+    private AppDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +38,28 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         tutorialBtn.setOnClickListener(this);
         settingsBtn.setOnClickListener(this);
         aboutBtn.setOnClickListener(this);
+
+        database = AppDatabase.getDatabase(getApplicationContext());
+
+        // cleanup for testing some initial data
+        database.packDao().removeAllPacks();
+        // add some data
+        List<Pack> packs = database.packDao().getAllPacks();
+        if (packs.size()==0) {
+            database.packDao().addPack(new Pack(1, "Easy"));
+            Pack pack = database.packDao().getAllPacks().get(0);
+            Toast.makeText(this, String.valueOf(pack.id), Toast.LENGTH_SHORT).show();
+
+            Level level = new Level(1, "easy1", pack.id);
+            database.levelDao().addLevel(level);
+            database.levelDao().addLevel(new Level(2, "easy2", pack.id));
+            database.packDao().addPack(new Pack(2, "Medium"));
+            database.levelDao().addLevel(new Level(3, "med1", 2));
+            database.levelDao().addLevel(new Level(4, "med2", 2));
+            database.levelDao().addLevel(new Level(5, "med3", 2));
+            database.packDao().addPack(new Pack(3, "Hard"));
+            database.levelDao().addLevel(new Level(6, "hard1", 3));
+        }
 
         //  Declare a new thread to do a preference check
         Thread t = new Thread(new Runnable() {
@@ -80,8 +110,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 Toast.makeText(this, "\"Continue\" not implemented yet", Toast.LENGTH_SHORT).show();
                 return;
             case R.id.newBtn:
-                Toast.makeText(this, "\"New\" not implemented yet", Toast.LENGTH_SHORT).show();
-                return;
+                intent = new Intent(this, LevelsActivity.class);
+                break;
             case R.id.generateBtn:
                 intent = new Intent(this, GenerateActivity.class);
                 break;
@@ -98,4 +128,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
         startActivity(intent);
     }
+
+    @Override
+    protected void onDestroy() {
+        AppDatabase.destroyInstance();
+        super.onDestroy();
+    }
+
 }
