@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="colorButtonNormal">#2196f3</item>
+        <!--<item name="android:buttonStyle">@style/MyButtonStyle</item>-->
     </style>
 
     <style name="AppTheme.NoActionBar" parent="AppTheme">
@@ -16,5 +19,16 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MyButtonStyle">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:minWidth">88dp</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:elevation">1dp</item>
+        <item name="android:translationZ">1dp</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
 
 </resources>

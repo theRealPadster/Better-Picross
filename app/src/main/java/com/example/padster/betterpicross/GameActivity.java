@@ -51,13 +51,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void run() {
                         if (!isPaused) {
-                            if (seconds == 60) {
-                                timerValue.setText(String.format("%02d", hour) + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", seconds));
-                                minutes = seconds / 60;
-                                seconds = seconds % 60;
-                                hour = minutes / 60;
-                            }
                             seconds += 1;
+                            if (seconds == 60) {
+                                minutes++;
+                                if (minutes == 60) {
+                                    hour++;
+                                }
+                                minutes = minutes % 60;
+                                seconds = seconds % 60;
+
+                                timerValue.setText(String.format("%02d", hour) + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", seconds));
+                            }
                             timerValue.setText(String.format("%02d", hour) + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", seconds));
                         }
                         else {
