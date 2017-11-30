@@ -12,7 +12,7 @@ import java.util.List;
  * Created by padster on 06/11/17.
  */
 
-@Database(entities = {Level.class, Pack.class},
+@Database(entities = {Level.class, Pack.class, Score.class},
 version = 16, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -20,6 +20,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract PackDao packDao();
     public abstract LevelDao levelDao();
+    public abstract ScoreDao scoreDao();
 
     public static AppDatabase getDatabase(Context context) {
         if (INSTANCE == null) {

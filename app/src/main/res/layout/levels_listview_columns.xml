@@ -7,7 +7,7 @@
     android:orientation="horizontal">
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/levelId"
+        android:id="@+id/column1"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
@@ -17,7 +17,7 @@
         android:minHeight="?android:attr/listPreferredItemHeightSmall" />
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/clues"
+        android:id="@+id/column2"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
@@ -27,7 +27,7 @@
         android:minHeight="?android:attr/listPreferredItemHeightSmall" />
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/packId"
+        android:id="@+id/column3"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"

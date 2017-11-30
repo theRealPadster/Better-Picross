@@ -18,6 +18,9 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.padster.betterpicross.database.AppDatabase;
+import com.example.padster.betterpicross.database.Score;
+
 import java.lang.reflect.Field;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -30,6 +33,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     Timer timer;
     int seconds = 0, minutes = 0, hour = 0;
     boolean isPaused = false;
+    private AppDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         int rows = bundle.getInt("rows");
         int cols = bundle.getInt("cols");
+
+        database = AppDatabase.getDatabase(getApplicationContext());
 
         //TODO
         //basically, I just need to generate clues. or a solution and then get clues from it i guess
@@ -80,6 +86,18 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }, 0, 1000);
         Button playPauseBtn = (Button) findViewById(R.id.playPauseBtn);
         playPauseBtn.setOnClickListener(this);
+
+        ////////////////////////
+
+        Button saveBtn = (Button) findViewById(R.id.saveBtn);
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String time = timerValue.getText().toString();
+                database.scoreDao().addScore(new Score(time, 1));
+                Toast.makeText(GameActivity.this, "Added score(" + time + ", 1)", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         //////////////////////////

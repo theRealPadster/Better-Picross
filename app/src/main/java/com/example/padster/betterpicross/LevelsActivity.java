@@ -1,15 +1,18 @@
 package com.example.padster.betterpicross;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.PaintDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridLayout;
 
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -17,6 +20,9 @@ import android.widget.Toast;
 
 import com.example.padster.betterpicross.database.AppDatabase;
 import com.example.padster.betterpicross.database.Level;
+import com.example.padster.betterpicross.database.Score;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +31,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class LevelsActivity extends AppCompatActivity implements View.OnClickListener {
+public class LevelsActivity extends AppCompatActivity {
 
     private AppDatabase database;
 
@@ -43,17 +49,30 @@ public class LevelsActivity extends AppCompatActivity implements View.OnClickLis
                 getLevelInfo(),
                 R.layout.levels_listview_columns,
                 new String[] { "levelId", "clues", "packId" },
-                new int[] { R.id.levelId, R.id.clues, R.id.packId });
+                new int[] { R.id.column1, R.id.column2, R.id.column3});
 
         levelsListView.setAdapter(adapter);
 
+        levelsListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position,
+                                    long arg3)
+            {
+                //TODO - is there a better way to grab the levelId column?
+//                LinearLayout level = (LinearLayout)adapter.getItemAtPosition(position);
+                LinearLayout level = (LinearLayout)v;
+                TextView levelIdView = (TextView) level.getChildAt(0);
+                int levelId = Integer.parseInt(levelIdView.getText().toString());
 
-//        Bundle bundle = getIntent().getExtras();
+                Intent intent = new Intent(LevelsActivity.this, ScoresActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("levelId", levelId);
+                intent.putExtras(bundle);
 
-//        int rows = bundle.getInt("rows");
-//        int cols = bundle.getInt("cols");
-
-
+                startActivity(intent);
+            }
+        });
     }
 
     List<Map<String, String>> getLevelInfo() {
@@ -91,11 +110,5 @@ public class LevelsActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         return allLevels;
-    }
-
-
-    @Override
-    public void onClick(View view) {
-
     }
 }
