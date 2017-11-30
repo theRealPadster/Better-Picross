@@ -1,10 +1,15 @@
 package com.example.padster.betterpicross;
 
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.PaintDrawable;
+import android.graphics.drawable.RippleDrawable;
+import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +18,7 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -91,8 +97,21 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
             for (int colCounter = 0; colCounter < cols; colCounter++) {
 
+                ContextThemeWrapper newContext;
+
+                if (solutionGrid.getTile(rowCounter, colCounter) == PicrossGrid.Colours.BLACK) {
+//                    b.setBackgroundColor(getResources().getColor(R.color.pink));
+
+                        newContext = new ContextThemeWrapper(this, R.style.AppTheme_FilledCell);
+//                    b.setBackgroundDrawable(new PaintDrawable(getResources().getColor(R.color.pink)));
+                }
+                else {
+                    newContext = new ContextThemeWrapper(this, R.style.AppTheme_EmptyCell);
+//                    b.setBackgroundDrawable(new PaintDrawable(Color.parseColor("#EEEEEE")));
+                }
+
                 //create new button
-                Button b = new Button(this);
+                Button b = new Button(newContext);
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams();
                 //TODO - tweak params
 
@@ -115,13 +134,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 b.setText(colCounter + "," + rowCounter);
 //                b.setOnClickListener(this);
 
-                if (solutionGrid.getTile(rowCounter, colCounter) == PicrossGrid.Colours.BLACK) {
-//                    b.setBackgroundColor(getResources().getColor(R.color.pink));
-                    b.setBackgroundDrawable(new PaintDrawable(getResources().getColor(R.color.pink)));
-                }
-                else {
-                    b.setBackgroundDrawable(new PaintDrawable(Color.parseColor("#EEEEEE")));
-                }
+
+
+
 
                 //TODO - is there a not gross way to do this?
                 //TODO - i'd rather just have one listener and get the coordinates somehow... gridlayout?
@@ -138,17 +153,39 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                         //TODO - change the state of the button and the gameGrid to match...
 
                         String toastMsg = "(" + colFinal + ", " + rowFinal + ")";
-                        PaintDrawable drawable = (PaintDrawable) bFinal.getBackground();
+
+                        //TODO - this line fails cause you can't cast a PaintDrawable from a RippleDrawable...
+//                        PaintDrawable drawable = (PaintDrawable) bFinal.getBackground();
+
+//                        RippleDrawable rDrawable = (RippleDrawable) bFinal.getBackground();
+//                        int alpha = rDrawable.getAlpha();
+//                        Drawable.ConstantState state = rDrawable.getConstantState();
+//                        int colorthing = 0;
+//                        try {
+//                            Field colorField = state.getClass().getDeclaredField("mColor");
+//                            colorField.setAccessible(true);
+//                            ColorStateList colorStateList = (ColorStateList) colorField.get(state);
+//                            colorthing = colorStateList.getDefaultColor();
+//                        } catch (NoSuchFieldException e) {
+//                            e.printStackTrace();
+//                        } catch (IllegalAccessException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                        toastMsg += " - " + colorthing;
+
 
                         //if empty
-                        if (drawable.getPaint().getColor() == Color.parseColor("#EEEEEE")) {
+//                        if (drawable.getPaint().getColor() == Color.parseColor("#EEEEEE")) {
+//                        if (drawable.getPaint().getColor() == Color.parseColor("#EEEEEE")) {
 //                            toastMsg += " - #eee";
-//                            gameGrid.setTile(rowFinal, colFinal, PicrossGrid.Colours.BLACK);
-                        }
-                        else { //if filled
+//
+////                            gameGrid.setTile(rowFinal, colFinal, PicrossGrid.Colours.BLACK);
+//                        }
+//                        else { //if filled
 //                            toastMsg += " - pink";
-//                            gameGrid.setTile(rowFinal, colFinal, PicrossGrid.Colours.WHITE);
-                        }
+////                            gameGrid.setTile(rowFinal, colFinal, PicrossGrid.Colours.WHITE);
+//                        }
 
                         toastMsg += " - isSolved? " + isSolved();
 

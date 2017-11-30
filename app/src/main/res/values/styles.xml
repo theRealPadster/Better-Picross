@@ -7,8 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <item name="colorButtonNormal">#2196f3</item>
-        <!--<item name="android:buttonStyle">@style/MyButtonStyle</item>-->
+        <item name="buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="AppTheme">
@@ -20,15 +19,13 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="MyButtonStyle">
-        <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:padding">0dp</item>
-        <item name="android:minWidth">88dp</item>
-        <item name="android:minHeight">36dp</item>
-        <item name="android:layout_margin">3dp</item>
-        <item name="android:elevation">1dp</item>
-        <item name="android:translationZ">1dp</item>
-        <item name="android:background">@color/colorPrimary</item>
+    <style name="AppTheme.EmptyCell" parent="AppTheme">
+        <item name="colorButtonNormal">@color/textColorPrimary</item>
+    </style>
+
+    <style name="AppTheme.FilledCell" parent="AppTheme">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
     </style>
 
 </resources>

@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         if (packs.size()==0) {
             database.packDao().addPack(new Pack(1, "Easy"));
             Pack pack = database.packDao().getAllPacks().get(0);
-            Toast.makeText(this, String.valueOf(pack.id), Toast.LENGTH_SHORT).show();
-
             Level level = new Level(1, "easy1", pack.id);
             database.levelDao().addLevel(level);
             database.levelDao().addLevel(new Level(2, "easy2", pack.id));
