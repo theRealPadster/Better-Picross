@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         database = AppDatabase.getDatabase(getApplicationContext());
 
         // cleanup for testing some initial data
-        database.packDao().removeAllPacks();
+//        database.packDao().removeAllPacks();
         // add some data
         List<Pack> packs = database.packDao().getAllPacks();
         if (packs.size()==0) {

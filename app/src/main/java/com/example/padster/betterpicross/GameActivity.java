@@ -1,12 +1,6 @@
 package com.example.padster.betterpicross;
 
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.PaintDrawable;
-import android.graphics.drawable.RippleDrawable;
-import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
@@ -21,7 +15,6 @@ import android.widget.Toast;
 import com.example.padster.betterpicross.database.AppDatabase;
 import com.example.padster.betterpicross.database.Score;
 
-import java.lang.reflect.Field;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -31,7 +24,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     PicrossGrid solutionGrid = null;
     PicrossGrid gameGrid = null;
     Timer timer;
-    int seconds = 0, minutes = 0, hour = 0;
+    int seconds = 0, minutes = 0, hours = 0;
     boolean isPaused = false;
     private AppDatabase database;
 
@@ -67,14 +60,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                             if (seconds == 60) {
                                 minutes++;
                                 if (minutes == 60) {
-                                    hour++;
+                                    hours++;
                                 }
                                 minutes = minutes % 60;
                                 seconds = seconds % 60;
 
-                                timerValue.setText(String.format("%02d", hour) + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", seconds));
+                                timerValue.setText(String.format("%02d", hours) + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", seconds));
                             }
-                            timerValue.setText(String.format("%02d", hour) + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", seconds));
+                            timerValue.setText(String.format("%02d", hours) + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", seconds));
                         }
                         else {
                             timerValue.setText("----");
@@ -223,7 +216,18 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     protected void onPause() {
         super.onPause();
 
+        isPaused = true;
+
         Toast.makeText(this, "TODO - save the game somehow before navigating away", Toast.LENGTH_LONG).show();
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        isPaused = false;
     }
 
     private boolean isSolved() {
@@ -257,4 +261,33 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             isPaused = true;
         }
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+        // Save UI state changes to the savedInstanceState.
+        // This bundle will be passed to onCreate if the process is
+        // killed and restarted.
+
+        //TODO - save which level it is, so it can load it back up...
+        //... and what they have marked up on the grid
+        //with putSerializable? or intArray?
+
+        savedInstanceState.putInt("seconds", seconds);
+        savedInstanceState.putInt("minutes", minutes);
+        savedInstanceState.putInt("hours", hours);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore UI state from the savedInstanceState.
+        // This bundle has also been passed to onCreate.
+
+        seconds = savedInstanceState.getInt("seconds");
+        minutes = savedInstanceState.getInt("minutes");
+        hours = savedInstanceState.getInt("hours");
+    }
+
 }
