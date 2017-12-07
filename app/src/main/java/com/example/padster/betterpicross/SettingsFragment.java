@@ -62,7 +62,6 @@ public class SettingsFragment extends PreferenceFragment {
 
 
 
-
                 } else {
                     Toast.makeText(getActivity(), "Music turned off", Toast.LENGTH_SHORT).show();
                 }
@@ -103,7 +102,7 @@ public class SettingsFragment extends PreferenceFragment {
         if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             Toast.makeText(getActivity(), "Write External Storage permission allows us to do store images. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
         } else {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+            requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
         }
     }
 
@@ -113,7 +112,6 @@ public class SettingsFragment extends PreferenceFragment {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.e("value", "Permission Granted, Now you can use local drive .");
-                    //TODO - not working here (on first check), gotta toggle twice
                     downloadFile("https://images.unsplash.com/photo-1446770145316-10a05382c470", "wall.jpg");
 
                 } else {
