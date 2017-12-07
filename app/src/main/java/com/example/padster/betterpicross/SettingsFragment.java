@@ -21,6 +21,7 @@ import android.widget.Toast;
 public class SettingsFragment extends PreferenceFragment {
 
     private static final int PERMISSION_REQUEST_CODE = 1;
+    private static String musicURL = "http://www.orangefreesounds.com/wp-content/uploads/2017/11/Electro-session-ambient-electronic-lounge-music.mp3?_=1";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,9 +29,6 @@ public class SettingsFragment extends PreferenceFragment {
 
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preferences);
-
-
-
 
         Preference musicPref = (Preference) findPreference("music_enabled");
         musicPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -46,7 +44,7 @@ public class SettingsFragment extends PreferenceFragment {
                         {
                             // Code for above or equal 23 API Oriented Device
                             // Your Permission granted already .Do next code
-                            downloadFile("https://images.unsplash.com/photo-1446770145316-10a05382c470", "wall.jpg");
+                            downloadFile(musicURL, "music.mp3");
                         } else {
                             requestPermission(); // Code for permission
                             //TODO - in the callback at the bottom...
@@ -56,7 +54,7 @@ public class SettingsFragment extends PreferenceFragment {
                     {
                         // Code for Below 23 API Oriented Device
                         // Do next code
-                        downloadFile("https://images.unsplash.com/photo-1446770145316-10a05382c470", "wall.jpg");
+                        downloadFile(musicURL, "music.mp3");
                     }
 
 
@@ -112,7 +110,7 @@ public class SettingsFragment extends PreferenceFragment {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.e("value", "Permission Granted, Now you can use local drive .");
-                    downloadFile("https://images.unsplash.com/photo-1446770145316-10a05382c470", "wall.jpg");
+                    downloadFile(musicURL, "music.mp3");
 
                 } else {
                     Log.e("value", "Permission Denied, You cannot use local drive .");

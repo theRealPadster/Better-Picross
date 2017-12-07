@@ -1,6 +1,11 @@
 package com.example.padster.betterpicross;
 
 
+import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
@@ -18,6 +23,8 @@ import com.example.padster.betterpicross.database.Score;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
+
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
     GridLayout gridLayout;
@@ -27,6 +34,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     int seconds = 0, minutes = 0, hours = 0;
     boolean isPaused = false;
     private AppDatabase database;
+    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,23 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         int cols = bundle.getInt("cols");
 
         database = AppDatabase.getDatabase(getApplicationContext());
+
+        SharedPreferences settings = getDefaultSharedPreferences(this);
+
+        if (settings.getBoolean("music_enabled", false)) {
+            Uri myUri = Uri.parse(Environment.getExternalStorageDirectory().getPath() + "/Download/music.mp3"); // initialize Uri here
+            MediaPlayer mediaPlayer = new MediaPlayer();
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            try{
+                mediaPlayer.setDataSource(getApplicationContext(), myUri);
+                mediaPlayer.prepare();
+                mediaPlayer.start();
+            }
+            catch (Exception e) {
+                Toast.makeText(this, "File not found!", Toast.LENGTH_SHORT).show();
+            }
+        }
+
 
         //TODO
         //basically, I just need to generate clues. or a solution and then get clues from it i guess
