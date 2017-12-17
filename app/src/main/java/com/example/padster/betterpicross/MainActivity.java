@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         Button continueBtn = (Button) findViewById(R.id.continueBtn);
         Button newBtn = (Button) findViewById(R.id.newBtn);
         Button generateBtn = (Button) findViewById(R.id.generateBtn);
+        Button scoresBtn = (Button) findViewById(R.id.scoresBtn);
         Button tutorialBtn = (Button) findViewById(R.id.tutorialBtn);
         Button settingsBtn = (Button) findViewById(R.id.settingsBtn);
         Button aboutBtn = (Button) findViewById(R.id.aboutBtn);
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         continueBtn.setOnClickListener(this);
         newBtn.setOnClickListener(this);
         generateBtn.setOnClickListener(this);
+        scoresBtn.setOnClickListener(this);
         tutorialBtn.setOnClickListener(this);
         settingsBtn.setOnClickListener(this);
         aboutBtn.setOnClickListener(this);
@@ -135,10 +137,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 Toast.makeText(this, "\"Continue\" not implemented yet", Toast.LENGTH_SHORT).show();
                 return;
             case R.id.newBtn:
-                intent = new Intent(this, LevelsActivity.class);
-                break;
+                Toast.makeText(this, "\"New\" not implemented yet", Toast.LENGTH_SHORT).show();
+                return;
             case R.id.generateBtn:
                 intent = new Intent(this, GenerateActivity.class);
+                break;
+            case R.id.scoresBtn:
+                intent = new Intent(this, LevelsActivity.class);
                 break;
             case R.id.tutorialBtn:
                 intent = new Intent(this, TutorialActivity.class);

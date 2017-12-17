@@ -36,9 +36,6 @@ public class MyBackgroundService extends IntentService {
                 DownloadWebPageTask task = new DownloadWebPageTask();
                 task.execute(new String[] { "https://raw.githubusercontent.com/theRealPadster/WhatToWeather/master/README.md" });
                 break;
-            case "stop":
-                Toast.makeText(this, "Stopping background service", Toast.LENGTH_SHORT).show();
-                break;
             default:
                 Toast.makeText(this, "Stopping background service", Toast.LENGTH_SHORT).show();
                 break;

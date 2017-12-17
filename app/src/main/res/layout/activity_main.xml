@@ -47,6 +47,14 @@
             android:text="@string/Generate" />
 
         <Button
+            android:id="@+id/scoresBtn"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/Scores" />
+
+        <Button
             android:id="@+id/tutorialBtn"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="match_parent"
