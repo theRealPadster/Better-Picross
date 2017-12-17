@@ -1,6 +1,7 @@
 package com.example.padster.betterpicross;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -114,6 +115,23 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 String time = timerValue.getText().toString();
                 database.scoreDao().addScore(new Score(time, 1));
                 Toast.makeText(GameActivity.this, "Added score(" + time + ", 1)", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button restoreBtn = (Button) findViewById(R.id.restoreBtn);
+        restoreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            /*
+             * Creates a new Intent to start the RSSPullService
+             * IntentService. Passes a URI in the
+             * Intent's "data" field.
+             */
+            Intent mServiceIntent = new Intent(getApplicationContext(), MyBackgroundService.class);
+            mServiceIntent.setData(Uri.parse("start"));
+
+            startService(mServiceIntent);
+
             }
         });
 
