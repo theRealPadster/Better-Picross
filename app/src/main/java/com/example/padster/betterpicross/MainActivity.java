@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             database.levelDao().addLevel(new Level(5, "med3", 2));
             database.packDao().addPack(new Pack(3, "Hard"));
             database.levelDao().addLevel(new Level(6, "hard1", 3));
+            database.levelDao().addLevel(new Level(7, "hard2", 3));
+            database.levelDao().addLevel(new Level(8, "hard3", 3));
         }
 
         //  Declare a new thread to do a preference check
