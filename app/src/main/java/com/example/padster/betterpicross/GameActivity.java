@@ -65,6 +65,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
+        if (!settings.getBoolean("show_timer", true)) {
+            TextView timerLbl = (TextView) findViewById(R.id.timerLbl);
+            timerLbl.setAlpha(0);
+        }
+
 
         //TODO
         //basically, I just need to generate clues. or a solution and then get clues from it i guess
