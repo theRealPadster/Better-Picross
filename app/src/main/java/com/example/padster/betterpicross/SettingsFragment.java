@@ -44,7 +44,7 @@ public class SettingsFragment extends PreferenceFragment {
                         {
                             // Code for above or equal 23 API Oriented Device
                             // Your Permission granted already .Do next code
-                            downloadFile(musicURL, "music.mp3");
+                            downloadFile(musicURL, "music.mp3", "Music for BetterPicross game");
                         } else {
                             requestPermission(); // Code for permission
                             //TODO - in the callback at the bottom...
@@ -54,7 +54,7 @@ public class SettingsFragment extends PreferenceFragment {
                     {
                         // Code for Below 23 API Oriented Device
                         // Do next code
-                        downloadFile(musicURL, "music.mp3");
+                        downloadFile(musicURL, "music.mp3", "Music for BetterPicross game");
                     }
 
 
@@ -66,15 +66,41 @@ public class SettingsFragment extends PreferenceFragment {
             }
         });
 
+        Preference vibPref = (Preference) findPreference("vibration_enabled");
+        vibPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                boolean vibration_enabled = (boolean) newValue;
+
+                if (vibration_enabled) {
+                    Toast.makeText(getContext(), "Vibration not implemented", Toast.LENGTH_SHORT).show();
+                }
+
+                return true;
+            }
+        });
+
+        Preference soundPref = (Preference) findPreference("sound_enabled");
+        soundPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                boolean sound_enabled = (boolean) newValue;
+
+                if (sound_enabled) {
+                    Toast.makeText(getContext(), "Sound not implemented", Toast.LENGTH_SHORT).show();
+                }
+
+                return true;
+            }
+        });
+
     }
 
-    private void downloadFile(String url, String name) {
+    private void downloadFile(String url, String name, String description) {
 
         //only download if file not there...
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + name);
         if (!file.exists()) {
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-            request.setDescription("Some description");
+            request.setDescription(description);
             request.setTitle(name);
             // in order for this if to run, you must use the android 3.2 to compile your app
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -117,7 +143,7 @@ public class SettingsFragment extends PreferenceFragment {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.e("value", "Permission Granted, Now you can use local drive .");
-                    downloadFile(musicURL, "music.mp3");
+                    downloadFile(musicURL, "music.mp3", "Music for BetterPicross game");
 
                 } else {
                     Log.e("value", "Permission Denied, You cannot use local drive .");
