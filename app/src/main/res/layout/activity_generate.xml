@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="24dp"
-        android:text="Choose a puzzle size"
+        android:text="@string/GenerateHeader"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
