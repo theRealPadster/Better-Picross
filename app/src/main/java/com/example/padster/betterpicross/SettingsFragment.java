@@ -14,6 +14,8 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.File;
+
 /**
  * Created by padster on 05/10/17.
  */
@@ -35,8 +37,6 @@ public class SettingsFragment extends PreferenceFragment {
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 boolean music_enabled = (boolean) newValue;
                 if (music_enabled) {
-                    Toast.makeText(getActivity(), "Music turned on, downloading wall", Toast.LENGTH_SHORT).show();
-//                    downloadTask.execute("https://images.unsplash.com/photo-1446770145316-10a05382c470");
 
                     if (Build.VERSION.SDK_INT >= 23)
                     {
@@ -60,8 +60,6 @@ public class SettingsFragment extends PreferenceFragment {
 
 
 
-                } else {
-                    Toast.makeText(getActivity(), "Music turned off", Toast.LENGTH_SHORT).show();
                 }
 
                 return true;
@@ -71,19 +69,28 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     private void downloadFile(String url, String name) {
-        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-        request.setDescription("Some description");
-        request.setTitle(name);
-        // in order for this if to run, you must use the android 3.2 to compile your app
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            request.allowScanningByMediaScanner();
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        }
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, name);
 
-        // get download service and enqueue file
-        DownloadManager manager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
-        manager.enqueue(request);
+        //only download if file not there...
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + name);
+        if (!file.exists()) {
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+            request.setDescription("Some description");
+            request.setTitle(name);
+            // in order for this if to run, you must use the android 3.2 to compile your app
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                request.allowScanningByMediaScanner();
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            }
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, name);
+
+            // get download service and enqueue file
+            DownloadManager manager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+            manager.enqueue(request);
+            Toast.makeText(getContext(), "Downloading music...", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(getContext(), "File " + name + " already exists, not re-downloading...", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private boolean checkPermission() {
