@@ -30,7 +30,7 @@
         android:gravity="center">
 
         <NumberPicker
-            android:id="@+id/rowsPicker"
+            android:id="@+id/colsPicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -44,7 +44,7 @@
             android:text="x" />
 
         <NumberPicker
-            android:id="@+id/colsPicker"
+            android:id="@+id/rowsPicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
